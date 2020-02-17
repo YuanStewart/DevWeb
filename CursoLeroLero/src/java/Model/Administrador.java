@@ -13,12 +13,15 @@ public class Administrador {
     String nome;
     String login;
     String senha;
+    int id;
 
     public Administrador(){};
     
-    public Administrador(String nome, String login) {
+    public Administrador(String nome, String login, String senha, int id) {
         this.nome = nome;
         this.login = login;
+        this.senha = senha;
+        this.id = id;
     }
     
     
@@ -45,6 +48,14 @@ public class Administrador {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

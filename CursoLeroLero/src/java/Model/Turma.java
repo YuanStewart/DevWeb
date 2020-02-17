@@ -13,39 +13,41 @@ import java.util.Date;
  */
 public class Turma {
     
-    int instruto_id;
-    int curosos_id;
+    int instrutor_id;
+    int cursos_id;
     Date data_inicio;
     Date data_final;
     int carga_horaria;
+    int id;
     
     public Turma(){};
     
-    public Turma(int instruto_id, int curosos_id, Date data_inicio, Date data_final, int carga_horaria) {
-        this.instruto_id = instruto_id;
-        this.curosos_id = curosos_id;
+    public Turma(int instrutor_id, int cursos_id, Date data_inicio, Date data_final, int carga_horaria, int id) {
+        this.instrutor_id = instrutor_id;
+        this.cursos_id = cursos_id;
         this.data_inicio = data_inicio;
         this.data_final = data_final;
         this.carga_horaria = carga_horaria;
+        this.id = id;
     }
     
     
     
 
-    public int getInstruto_id() {
-        return instruto_id;
+    public int getInstrutor_id() {
+        return instrutor_id;
     }
 
-    public void setInstruto_id(int instruto_id) {
-        this.instruto_id = instruto_id;
+    public void setInstrutor_id(int instrutor_id) {
+        this.instrutor_id = instrutor_id;
     }
 
-    public int getCurosos_id() {
-        return curosos_id;
+    public int getCursos_id() {
+        return cursos_id;
     }
 
-    public void setCurosos_id(int curosos_id) {
-        this.curosos_id = curosos_id;
+    public void setCursos_id(int cursos_id) {
+        this.cursos_id = cursos_id;
     }
 
     public Date getData_inicio() {
@@ -70,6 +72,14 @@ public class Turma {
 
     public void setCarga_horaria(int carga_horaria) {
         this.carga_horaria = carga_horaria;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

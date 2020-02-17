@@ -16,15 +16,17 @@ public class Curso {
     String ementa;
     int carga_horaria;
     double preco;
+    int id;
     
     public Curso(){};
     
-    public Curso(String nome, String requisito, String ementa, int carga_horaria, double preco) {
+    public Curso(String nome, String requisito, String ementa, int carga_horaria, double preco, int id) {
         this.nome = nome;
         this.requisito = requisito;
         this.ementa = ementa;
         this.carga_horaria = carga_horaria;
         this.preco = preco;
+        this.id = id;
     }
     
     
@@ -66,6 +68,14 @@ public class Curso {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

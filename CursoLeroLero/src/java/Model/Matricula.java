@@ -17,14 +17,16 @@ public class Matricula {
     int alunos_id;
     Date data_matricula;
     float nota;
+    int id;
     
     public Matricula(){};
     
-    public Matricula(int turmas_id, int alunos_id, Date data_matricula, float nota) {
+    public Matricula(int turmas_id, int alunos_id, Date data_matricula, float nota, int id) {
         this.turmas_id = turmas_id;
         this.alunos_id = alunos_id;
         this.data_matricula = data_matricula;
         this.nota = nota;
+        this.id = id;
     }
     
     
@@ -59,6 +61,14 @@ public class Matricula {
 
     public void setNota(float nota) {
         this.nota = nota;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

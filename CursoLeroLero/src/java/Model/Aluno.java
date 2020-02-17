@@ -23,10 +23,11 @@ public class Aluno {
     String cep;
     String comentario;
     char aprovado;
+    int id;
     
     public Aluno(){};
 
-    public Aluno(String cpf, String nome, String email, String celular, String login, String senha, String endereco, String cidade, String bairro, String cep, String comentario, char aprovado) {
+    public Aluno(String cpf, String nome, String email, String celular, String login, String senha, String endereco, String cidade, String bairro, String cep, String comentario, char aprovado, int id) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
@@ -39,6 +40,7 @@ public class Aluno {
         this.cep = cep;
         this.comentario = comentario;
         this.aprovado = aprovado;
+        this.id = id;
     }
     
     
@@ -137,6 +139,14 @@ public class Aluno {
 
     public void setAprovado(char aprovado) {
         this.aprovado = aprovado;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     
