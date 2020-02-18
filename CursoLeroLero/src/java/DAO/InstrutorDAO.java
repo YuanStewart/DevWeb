@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import Model.Turma;
 
 import javax.swing.JOptionPane;
 
@@ -22,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author yuan
  */
-public class IntrutorDAO {
+public class InstrutorDAO {
         Connection connection = null;
         PreparedStatement stmt = null;
     
@@ -113,4 +114,62 @@ public class IntrutorDAO {
             this.closeConnection();
         }
     }
+    
+    public Instrutor listarInstrutorPorIdDAO(int id) throws SQLException {
+        
+        ResultSet rs = null;
+        Instrutor instrutor = null;
+		
+        try {
+        	connection = new FabricaDeConexoes().getConnection();
+        	stmt = connection.prepareStatement("SELECT * FROM instrutores WHERE id = " + id);
+        	rs = stmt.executeQuery();
+        	if(rs.next()) {
+        	instrutor = new Instrutor();
+        	instrutor.setNome(rs.getString("nome"));
+        	instrutor.setEmail(rs.getString("email"));
+        	instrutor.setValor_hora(rs.getInt("valor_hora"));
+        	instrutor.setLogin(rs.getString("login"));
+                instrutor.setSenha(rs.getString("senha"));
+                instrutor.setExperiencia(rs.getString("experiencia"));
+        	}
+        } catch(SQLException e) {
+        	JOptionPane.showMessageDialog(null, "Erro ao listar instrutor pelo ID: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+        
+        return instrutor;
+	}
+    
+    public List<Turma> listarTodasAsTurmasPorIdDoInstrutorDAO(int id) throws SQLException {
+		
+        ResultSet rs = null;
+        ArrayList<Turma> turmas = new ArrayList<>();
+        Turma turma = null;
+        
+        try {
+        	connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT * FROM turmas WHERE instrutores_id = " + id);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+            	turma = new Turma();
+            	turma.setId(rs.getInt("id"));
+        		turma.setInstrutor_id(rs.getInt("instrutores_id"));
+        		turma.setCursos_id(rs.getInt("cursos_id"));
+        		turma.setData_inicio(rs.getDate("data_inicio"));
+        		turma.setData_final(rs.getDate("data_final"));
+        		turma.setCarga_horaria(rs.getInt("carga_horaria"));
+        		
+        		turmas.add(turma);
+            }
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar todas as turmas de instrutor: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+        
+        return turmas;
+	}
 }

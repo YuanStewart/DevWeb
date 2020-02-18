@@ -50,7 +50,7 @@ public class MatriculaDAO {
 		}
 	}
 
-    public List<Matricula> listarTodasMatriculasDAO() throws SQLException {
+    public List<Matricula> listarTodasAsMatriculasDAO() throws SQLException {
 		
         ResultSet rs = null;
         List<Matricula> matriculas = new ArrayList<>();
@@ -104,7 +104,7 @@ public class MatriculaDAO {
         }
     }
         
-        public void darNotaMatriculaDAO(Matricula matricula, double nota) throws SQLException {
+        public void darNotaParaMatriculaDAO(Matricula matricula, double nota) throws SQLException {
     	 
          
       
@@ -133,6 +133,126 @@ public class MatriculaDAO {
             this.closeConnection();
         }
     }
+        public Matricula listarMatriculaPeloIdDAO(int id) throws SQLException {
+        
+        ResultSet rs = null;
+        Matricula matricula = null;
+
+        try {
+            connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT * FROM matriculas WHERE id = " + id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                matricula = new Matricula();
+                matricula.setTurmas_id(rs.getInt("turmas_id"));
+                matricula.setAlunos_id(rs.getInt("alunos_id"));
+                matricula.setData_matricula(rs.getDate("data_matricula"));
+                matricula.setNota(rs.getFloat("nota"));
+                return matricula;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar matricula pelo ID: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+
+        return null;
+    }
+        public List<Integer> listarTurmasPorAlunoDAO(int id) throws SQLException {
+        
+        ResultSet rs = null;
+        List<Integer> turmas = new ArrayList<>();
+        
+        try {
+            connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT turmas_id FROM matriculas WHERE alunos_id =" + id);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+            	turmas.add(rs.getInt("turmas_id"));
+        	}    
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar turmas pelo ID do aluno: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+
+        return turmas;
+    }
+        public List<Integer> listarNotasPorAlunoDAO(int id) throws SQLException {
+        
+        ResultSet rs = null;
+        List<Integer> notas = new ArrayList<>();
+        
+        try {
+            connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT notas FROM matriculas WHERE alunos_id =" + id);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+            	notas.add(rs.getInt("notas"));
+        	}    
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar notas pelo ID do aluno: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+
+        return notas;
+    }
+        
+	public List<Integer> listarAlunosPorTurmaDAO(int id) throws SQLException {
+        
+        ResultSet rs = null;
+        List<Integer> alunos = new ArrayList<>();
+        
+        try {
+        	connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT alunos_id FROM matriculas WHERE turmas_id =" + id);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+            	alunos.add(rs.getInt("alunos_id"));
+        	}    
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar alunos pelo ID da turma: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+
+        return alunos;
+    }
+	
+	
+	public List<Matricula> listarTodasMatriculasPorAlunoIdDAO(int id) throws SQLException {
+		
+        ResultSet rs = null;
+        List<Matricula> matriculas = new ArrayList<>();
+        Matricula matricula = null;
+        
+        try {
+        	connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT * FROM matriculas WHERE alunos_id = " + id);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+            	matricula = new Matricula();
+            	matricula.setId(rs.getInt("id"));
+        		matricula.setTurmas_id(rs.getInt("turmas_id"));
+        		matricula.setAlunos_id(rs.getInt("alunos_id"));
+        		matricula.setData_matricula(rs.getDate("data_matricula"));
+        		matricula.setNota(rs.getInt("nota"));
+        		
+        		matriculas.add(matricula);
+        	}     	
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar todas as matriculas por aluno id: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+
+        return matriculas;
+	}
     
 }
 

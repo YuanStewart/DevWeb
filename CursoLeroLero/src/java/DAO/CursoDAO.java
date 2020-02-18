@@ -112,5 +112,32 @@ public class CursoDAO {
             this.closeConnection();
         }
     }
+            
+            public Curso listarCursoPorIdDAO(int id) throws SQLException {
+        
+        ResultSet rs = null;
+        Curso curso = null;
+
+        try {
+            connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT * FROM cursos WHERE id = " + id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                curso = new Curso();
+                curso.setNome(rs.getString("nome"));
+                curso.setRequisito(rs.getString("requisito"));
+                curso.setEmenta(rs.getString("ementa"));
+                curso.setCarga_horaria(rs.getInt("carga_horaria"));
+                curso.setPreco(rs.getDouble("preco"));
+                return curso;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar curso pelo ID: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+
+        return null;
+    }
     
 }

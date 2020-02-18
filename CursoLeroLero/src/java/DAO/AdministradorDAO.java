@@ -11,6 +11,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -65,4 +68,58 @@ public class AdministradorDAO {
         } finally {
             this.closeConnection();
         }};
+
+
+public Administrador listarAdmPorIdDAO(int id) throws SQLException {
+        
+        ResultSet rs = null;
+        Administrador administrador = null;
+
+        try {
+            connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT * FROM administrador WHERE id = " + id);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                administrador = new Administrador();
+                administrador.setNome(rs.getString("nome"));
+                administrador.setLogin(rs.getString("login"));
+                administrador.setSenha(rs.getString("senha"));
+                return administrador;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar administrador pelo ID: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+
+        return administrador;
+        
+    }
+public List<Administrador> listarTodosAdmDAO() throws SQLException {
+		
+        ResultSet rs = null;
+        ArrayList<Administrador> administradores = new ArrayList<>();
+        Administrador administrador = null;
+        
+        try {
+            connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT * FROM administrador");
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+            	administrador = new Administrador();
+            	administrador.setId(rs.getInt("id"));
+            	administrador.setNome(rs.getString("nome"));
+            	administrador.setLogin(rs.getString("login"));
+            	administrador.setSenha(rs.getString("senha"));
+            	administradores.add(administrador);
+            }        	
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar todos os administradores: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+        
+        return administradores;
+	}
 }

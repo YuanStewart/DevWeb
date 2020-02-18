@@ -22,12 +22,12 @@ public class Aluno {
     String bairro;
     String cep;
     String comentario;
-    char aprovado;
+    Boolean aprovado;
     int id;
     
     public Aluno(){};
 
-    public Aluno(String cpf, String nome, String email, String celular, String login, String senha, String endereco, String cidade, String bairro, String cep, String comentario, char aprovado, int id) {
+    public Aluno(String cpf, String nome, String email, String celular, String login, String senha, String endereco, String cidade, String bairro, String cep, String comentario, Boolean aprovado, int id) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
@@ -133,11 +133,11 @@ public class Aluno {
         this.comentario = comentario;
     }
 
-    public char getAprovado() {
+    public Boolean getAprovado() {
         return aprovado;
     }
 
-    public void setAprovado(char aprovado) {
+    public void setAprovado(Boolean aprovado) {
         this.aprovado = aprovado;
     }
     

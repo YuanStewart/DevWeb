@@ -9,7 +9,10 @@ import Model.FabricaDeConexoes;
 import Model.Aluno;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -66,7 +69,7 @@ public class AlunoDAO {
     }
 
     
-    public void atualizaAluno(Aluno aluno) throws SQLException {
+    public void atualizaAlunoDAO(Aluno aluno) throws SQLException {
          try {
             connection = new FabricaDeConexoes().getConnection();
             stmt = connection.prepareStatement("UPDATE aluno SET login = ?,nome = ?, senha = ?, bairro = ?, celular = ?, cep =?, cidade = ?, comentario = ?, cpf = ?, email = ?, endereco =? WHERE id = ?");
@@ -89,6 +92,90 @@ public class AlunoDAO {
         } finally {
             this.closeConnection();
         }};
+    public Aluno listarAlunoPorIdDAO(int id) throws SQLException {
+		
+        ResultSet rs = null;
+        Aluno aluno = null;
+		
+        try {
+        	connection = new FabricaDeConexoes().getConnection();
+        	stmt = connection.prepareStatement("SELECT * FROM alunos WHERE id =" + id);
+        	rs = stmt.executeQuery();
+        	if(rs.next()) {
+        	aluno = new Aluno();
+        	aluno.setId(rs.getInt("id"));
+        	aluno.setCpf(rs.getString("cpf"));
+        	aluno.setNome(rs.getString("nome"));
+        	aluno.setEmail(rs.getString("email"));
+        	aluno.setCelular(rs.getString("celular"));
+                aluno.setLogin(rs.getString("login"));
+                aluno.setSenha(rs.getString("senha"));
+                aluno.setEndereco(rs.getString("endereco"));
+                aluno.setCidade(rs.getString("cidade"));
+                aluno.setBairro(rs.getString("bairro"));
+                aluno.setCep(rs.getString("cep"));
+                aluno.setComentario(rs.getString("comentario"));
+                aluno.setAprovado(rs.getBoolean("aprovado"));
+        	}
+        } catch(SQLException e) {
+        	JOptionPane.showMessageDialog(null, "Erro ao listar aluno pelo ID: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+        
+        return aluno;
+	}
+    public List<Aluno> listarTodosOsAlunosDAO() throws SQLException {
+		
+        ResultSet rs = null;
+        List<Aluno> alunos = new ArrayList<>();
+        Aluno aluno = null;
+        
+        try {
+        	connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("SELECT * FROM alunos");
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+            	aluno = new Aluno();
+            	aluno.setId(rs.getInt("id"));
+            	aluno.setCpf(rs.getString("cpf"));
+            	aluno.setNome(rs.getString("nome"));
+            	aluno.setEmail(rs.getString("email"));
+            	aluno.setCelular(rs.getString("celular"));
+            	aluno.setLogin(rs.getString("login"));
+            	aluno.setSenha(rs.getString("senha"));
+            	aluno.setEndereco(rs.getString("endereco"));
+            	aluno.setCidade(rs.getString("cidade"));
+            	aluno.setBairro(rs.getString("bairro"));
+            	aluno.setCep(rs.getString("cep"));
+            	aluno.setAprovado(rs.getBoolean("aprovado"));
+            	alunos.add(aluno);
+            }        	
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar todos os alunos: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+
+        return alunos;
+	}
+    public void aprovarAlunoDAO(Aluno aluno) throws SQLException {
+		
+        
+        try {
+            connection = new FabricaDeConexoes().getConnection();
+            stmt = connection.prepareStatement("UPDATE alunos SET aprovado = ? WHERE id = ?");
+            stmt.setBoolean(1, aluno.getAprovado());
+            stmt.setInt(2, aluno.getId());
+            stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+        	JOptionPane.showMessageDialog(null, "Erro ao aprovar aluno DAO: " + e.getMessage());
+        } finally {
+            this.closeConnection();
+        }
+	}
   }
     
 
