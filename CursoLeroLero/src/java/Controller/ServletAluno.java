@@ -22,15 +22,6 @@ import java.sql.SQLException;
  */
 public class ServletAluno extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -49,8 +40,6 @@ public class ServletAluno extends HttpServlet {
     }
     
     public void insereAluno(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-         
-	
 		String cpf = request.getParameter("cpf").replaceAll("[.-]", "");
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
@@ -67,28 +56,18 @@ public class ServletAluno extends HttpServlet {
 		
 		AlunoDAO AlunoDAO = new AlunoDAO();
 		
-		
 		AlunoDAO.adicionaAlunoDAO(aluno);
 		
 		
 	}
     
     public void deletaAluno(HttpServletRequest request, HttpServletResponse response) throws SQLException  {
-
-	
 		int id = Integer.parseInt(request.getParameter("id"));
-		Aluno aluno = new Aluno();
                 AlunoDAO AlunoDAO = new AlunoDAO();
-		AlunoDAO.setId(id);
 		AlunoDAO.deletaAlunoDAO(id);
-		
-		
 	}
 
     public void atualizaAluno(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-
-	
-	
 		int id = Integer.parseInt(request.getParameter("id"));
 		String cpf = request.getParameter("cpf").replaceAll("[.-]", "");
 		String nome = request.getParameter("nome");
@@ -100,28 +79,18 @@ public class ServletAluno extends HttpServlet {
 		String cidade = request.getParameter("cidade");
 		String bairro = request.getParameter("bairro");
 		String cep = request.getParameter("cep").replaceAll("[.-]", "");
+                Boolean aprovado = false;
 		
 		Aluno aluno = new Aluno(cpf, nome, email, celular, login, senha, endereco, cidade, bairro, cep, aprovado);
                 AlunoDAO AlunoDAO = new AlunoDAO();
 		
-		
+	
 		AlunoDAO.atualizaAlunoDAO(aluno);
 		
 		
-	}
-    
-    
+}
     
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

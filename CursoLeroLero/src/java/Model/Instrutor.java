@@ -20,14 +20,13 @@ public class Instrutor {
     
     public Instrutor(){};
     
-    public Instrutor(String nome, String email, int valor_hora, String login, String senha, String experiencia, int id) {
+    public Instrutor(String nome, String email, int valor_hora, String login, String senha, String experiencia) {
         this.nome = nome;
         this.email = email;
         this.valor_hora = valor_hora;
         this.login = login;
         this.senha = senha;
         this.experiencia = experiencia;
-        this.id = id;
     }
     
     
