@@ -27,7 +27,7 @@ public class Aluno {
     
     public Aluno(){};
 
-    public Aluno(String cpf, String nome, String email, String celular, String login, String senha, String endereco, String cidade, String bairro, String cep, String comentario, Boolean aprovado, int id) {
+    public Aluno(String cpf, String nome, String email, String celular, String login, String senha, String endereco, String cidade, String bairro, String cep,Boolean aprovado) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
@@ -38,9 +38,9 @@ public class Aluno {
         this.cidade = cidade;
         this.bairro = bairro;
         this.cep = cep;
-        this.comentario = comentario;
+        
         this.aprovado = aprovado;
-        this.id = id;
+       
     }
     
     

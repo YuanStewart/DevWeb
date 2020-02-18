@@ -16,6 +16,14 @@
         <servlet-name>ServletAdministrador</servlet-name>
         <servlet-class>Controller.ServletAdministrador</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletTurma</servlet-name>
+        <servlet-class>Controller.ServletTurma</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletCurso</servlet-name>
+        <servlet-class>Controller.ServletCurso</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CursoLeroLero</servlet-name>
         <url-pattern>/CursoLeroLero</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>ServletAdministrador</servlet-name>
         <url-pattern>/ServletAdministrador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletTurma</servlet-name>
+        <url-pattern>/ServletTurma</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCurso</servlet-name>
+        <url-pattern>/ServletCurso</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

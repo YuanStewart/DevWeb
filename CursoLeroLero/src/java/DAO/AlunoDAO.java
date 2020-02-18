@@ -28,7 +28,7 @@ public class AlunoDAO {
         this.connection.close();
     }
 
-    public void adicionaAluno(Aluno aluno) throws SQLException {
+    public void adicionaAlunoDAO(Aluno aluno) throws SQLException {
         try {
             connection = new FabricaDeConexoes().getConnection();
             stmt = connection.prepareStatement("INSERT INTO aluno (id, login, nome, senha, bairro, celular, cep, cidade, comentario, cpf, email, endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -56,7 +56,7 @@ public class AlunoDAO {
         
     
     
-    public void deletaAluno(int id) throws SQLException {
+    public void deletaAlunoDAO(int id) throws SQLException {
         try {
             connection = new FabricaDeConexoes().getConnection();
             stmt = connection.prepareStatement("DELETE FROM aluno WHERE id = " + id);
