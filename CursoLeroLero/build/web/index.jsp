@@ -22,7 +22,7 @@
 
 <body>
   <!--NavBar-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
     <a class="navbar-brand">Curso Lero Lero</a>
         <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto ">

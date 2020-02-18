@@ -21,30 +21,14 @@
 
     <body>
         
-         <!--NavBar-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand">Curso Lero Lero</a>
-        <form class="form-inline my-2 my-lg-0">
-            <ul class="navbar-nav mr-auto ">
-                
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Tipo de Usuário
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Administrador</a>
-                        <a class="dropdown-item" href="#">Instrutor</a>
-                        <a class="dropdown-item" href="#">Aluno</a>
-                    </div>
-                </li>
+        <!--NavBar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+            <a class="navbar-brand">Curso Lero Lero</a>
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                    <a href="/CursoLeroLero">Sair da Conta</a></button>
 
-            </ul>
-            <input class="form-control mr-sm-2" type="text" placeholder="Usuário" aria-label="Usuário">
-            <input class="form-control mr-sm-2" type="password" placeholder="Senha" aria-label="Senha">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Log in</button>
-        </form>
-</nav>
+            </form>
+        </nav>
 <br>
 <div class="container">
 <h1> Seja bem-vindo, (nome_aluno) </h1>
