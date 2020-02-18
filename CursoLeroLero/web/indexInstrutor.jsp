@@ -63,6 +63,39 @@
                     </div>
                 </div>
                 <br>
+                <!--Valor por Hora-->
+                <h2>Total Trabalhado</h2>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Turma</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Total de Horas</th>
+                            <th scope="col">Valor final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Dev Web</td>
+                            <td>10</td>
+                            <td>R$150,00</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Dev Web</td>
+                            <td>10</td>
+                            <td>R$150,00</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Dev Web</td>
+                            <td>10</td>
+                            <td>R$150,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
                 <!--Lista de Turmas-->
                 <h2>Lista de Turmas</h2>
                 <div class="accordion" id="accordionExample">
@@ -109,12 +142,12 @@
                             </div>
                         </div>
                     </div>
-                    
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
