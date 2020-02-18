@@ -31,7 +31,7 @@ public class InstrutorDAO {
         this.connection.close();
         
     }
-    public void inserirInstrutorDAO(Instrutor instrutor) throws SQLException{
+    public void inserirInstrutor(Instrutor instrutor) throws SQLException{
         
         
         try {
@@ -51,7 +51,7 @@ public class InstrutorDAO {
 		}
     }
     
-    public void alterarInstrutorDAO(Instrutor instrutor) throws SQLException {
+    public void alterarInstrutor(Instrutor instrutor) throws SQLException {
 		
         
         try {
@@ -70,7 +70,7 @@ public class InstrutorDAO {
             this.closeConnection();
             }
     }
-    public List<Instrutor> listarTodosInstrutoresDAO() throws SQLException {
+    public List<Instrutor> listarTodosInstrutores() throws SQLException {
 		
         ResultSet rs = null;
         ArrayList<Instrutor> instrutores = new ArrayList<>();
